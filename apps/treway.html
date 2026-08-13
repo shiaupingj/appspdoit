@@ -12,16 +12,31 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌳</text></svg>">
 </head>
 <body class="theme-treway">
+  <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true" tabindex="-1">
   <header class="site-header">
-    <div class="container nav">
+    <div class="container nav has-menu">
       <a class="wordmark" href="../index.html">appspdoit</a>
       <nav class="nav-pill">
         <a class="active" href="../index.html#apps">產品</a>
         <a href="../index.html#about">關於</a>
         <a href="../index.html#contact">聯絡</a>
       </nav>
+      <label for="nav-toggle" class="burger" aria-label="開啟選單">
+        <span></span><span></span><span></span>
+      </label>
     </div>
   </header>
+
+  <label for="nav-toggle" class="nav-overlay" aria-hidden="true"></label>
+  <aside class="mobile-menu" aria-label="產品選單">
+    <div class="mobile-menu-head">
+      <span class="section-label">產品 / APPS</span>
+      <label for="nav-toggle" class="menu-close" aria-label="關閉選單">✕</label>
+    </div>
+    <a href="ira.html">IRA 資產再平衡</a>
+    <a href="planto.html">Planto</a>
+    <a class="active" href="treway.html">TreWay 找樹趣</a>
+  </aside>
 
   <div class="container crumb"><a href="../index.html">首頁</a> / TreWay 找樹趣</div>
 
