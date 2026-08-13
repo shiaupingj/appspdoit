@@ -96,7 +96,11 @@
 
 /* ---------- 基礎 ---------- */
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  /* sticky header 高度（72px）+ 20px 呼吸空間，避免錨點跳轉時標題被 header 蓋住 */
+  scroll-padding-top: 92px;
+}
 
 body {
   margin: 0;
@@ -166,6 +170,84 @@ img { max-width: 100%; display: block; }
 .nav-pill a:hover { color: var(--nav-active-fg); background: color-mix(in srgb, var(--nav-active-bg) 25%, transparent); }
 .nav-pill a.active { background: var(--nav-active-bg); color: var(--nav-active-fg); }
 .nav-pill a.active:hover { background: var(--nav-active-bg); }
+
+/* ---------- 手機版漢堡選單（右側抽屜，對應 Figma：Mobile · IRA · 選單開啟） ---------- */
+.nav-toggle { position: absolute; opacity: 0; width: 0; height: 0; pointer-events: none; }
+.burger {
+  display: none;               /* 桌機隱藏；行動版由 .has-menu 顯示 */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 46px;
+  height: 40px;
+  flex: 0 0 auto;
+  border-radius: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+}
+.burger span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--ink-second);
+}
+.nav-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 55;
+  background: rgba(0, 0, 0, .42);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .28s ease, visibility .28s ease;
+}
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 60;
+  height: 100%;
+  width: min(80vw, 320px);
+  flex-direction: column;
+  padding: 14px 10px 24px;
+  background: var(--surface-dark);
+  box-shadow: -10px 0 40px rgba(0, 0, 0, .3);
+  transform: translateX(100%);
+  transition: transform .28s ease;
+}
+.mobile-menu-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 14px 10px;
+}
+.mobile-menu-head .section-label { margin: 0; color: var(--ink-faint); }
+.menu-close {
+  cursor: pointer;
+  color: var(--ink-inverse);
+  font-size: 20px;
+  line-height: 1;
+  padding: 4px 10px;
+  border-radius: 8px;
+}
+.menu-close:hover { background: rgba(255, 255, 255, .1); }
+.mobile-menu a {
+  padding: 16px 14px;
+  font-family: var(--font-cjk);
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--ink-inverse);
+  border-top: 1px solid rgba(255, 255, 255, .12);
+}
+.mobile-menu a.active { font-weight: 700; }
+.mobile-menu a:hover { background: rgba(255, 255, 255, .06); }
+.nav-toggle:checked ~ .nav-overlay { opacity: 1; visibility: visible; }
+.nav-toggle:checked ~ .mobile-menu { transform: translateX(0); }
 
 /* ---------- 按鈕 ---------- */
 .btn {
@@ -702,4 +784,10 @@ img { max-width: 100%; display: block; }
   }
   .nav-pill::-webkit-scrollbar { display: none; }
   .nav-pill a { padding: 8px 14px; }
+
+  /* 有漢堡選單的頁面（如 IRA）：改用右上漢堡鈕，隱藏膠囊導覽 */
+  .has-menu .nav-pill { display: none; }
+  .has-menu .burger { display: inline-flex; }
+  .nav-overlay { display: block; }
+  .mobile-menu { display: flex; }
 }
