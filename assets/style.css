@@ -618,7 +618,7 @@ img { max-width: 100%; display: block; }
   letter-spacing: -.3px;
   color: var(--ink-second);
 }
-.why p { margin: 0; max-width: 700px; font-size: 15px; line-height: 1.6; text-align: left; color: var(--ink-second); }
+.why p { margin: 0; max-width: 700px; align-self: flex-start; font-size: 15px; line-height: 1.6; text-align: left; color: var(--ink-second); }
 
 /* ---------- FAQ ---------- */
 .faq { padding: 36px 0 0; }
@@ -790,7 +790,8 @@ img { max-width: 100%; display: block; }
 
 @media (max-width: 680px) {
   :root { --pad: 20px; }
-  .cards { grid-template-columns: 1fr; }
+  .cards { grid-template-columns: 1fr; gap: 50px; }
+  #about p:not(.section-label) { text-align: left; }
   .hero { padding: 44px 0 40px; }
   .footer-top { flex-direction: column; gap: 28px; }
   .footer-cols { gap: 32px; }
@@ -804,8 +805,6 @@ img { max-width: 100%; display: block; }
     border-radius: 0;
   }
   .app-hero-media img { max-width: none; margin: 0; }
-  /* 手機版 Why 文字恢復置中 */
-  .why p { text-align: center; }
   .legal-card { padding: 24px 20px; }
 }
 
