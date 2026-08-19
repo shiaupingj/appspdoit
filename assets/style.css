@@ -54,12 +54,20 @@
   --font-latin: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --font-cjk: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
   --font: var(--font-latin), var(--font-cjk);
+
+  /* 品牌強調色（版本更新標籤 / 方案表 Pro 欄）——各 app 主題覆寫；
+     -soft / -tint 以 color-mix 對 --bg-card 推導，亮暗自動適配 */
+  --brand:      #16a34a;                                          /* IRA 綠（預設） */
+  --brand-ink:  #0f7a37;                                          /* soft 底上的文字 / 強調 */
+  --brand-fg:   #ffffff;                                          /* brand 底上的文字 */
+  --brand-soft: color-mix(in srgb, var(--brand) 16%, var(--bg-card));
+  --brand-tint: color-mix(in srgb, var(--brand) 7%, var(--bg-card));
 }
 
-/* 各 app 主題色（重點色） */
-.theme-ira    { --accent: #01011f; }
-.theme-planto { --accent: #123020; }
-.theme-treway { --accent: #2c1c06; }
+/* 各 app 主題色（重點色 + 品牌強調色） */
+.theme-ira    { --accent: #01011f; --brand: #749E44; --brand-ink: #749E44; }
+.theme-planto { --accent: #123020; --brand: #3f7a34; --brand-ink: #2f6a26; }
+.theme-treway { --accent: #2c1c06; --brand: #7a5a3c; --brand-ink: #5f4326; }
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -89,12 +97,17 @@
     --accent: #e9e9e4;
     --hl: #cfe0ff;
 
+    /* 暗色：品牌色提亮以維持對比，brand 底上改用深字 */
+    --brand:     #34d17f;
+    --brand-ink: #8fe9b3;
+    --brand-fg:  #0c1a11;
+
     --shadow:    0 1px 3px rgba(0, 0, 0, .5);
     --shadow-lg: 0 20px 54px rgba(0, 0, 0, .55);
   }
-  .theme-ira    { --accent: #cfe0ff; }
-  .theme-planto { --accent: #bfe7cd; }
-  .theme-treway { --accent: #e8d3b3; }
+  .theme-ira    { --accent: #cfe0ff; --brand: #9dc46e; --brand-ink: #b7d98f; }
+  .theme-planto { --accent: #bfe7cd; --brand: #7fc96a; --brand-ink: #bfe7cd; }
+  .theme-treway { --accent: #e8d3b3; --brand: #c9a878; --brand-ink: #e8d3b3; }
 }
 
 /* ---------- 基礎 ---------- */
@@ -618,7 +631,7 @@ img { max-width: 100%; display: block; }
   letter-spacing: -.3px;
   color: var(--ink-second);
 }
-.why p { margin: 0; max-width: 700px; align-self: flex-start; font-size: 15px; line-height: 1.6; text-align: left; color: var(--ink-second); }
+.why p { margin: 0; max-width: 700px; align-self: center; font-size: 15px; line-height: 1.6; text-align: left; color: var(--ink-second); }
 
 /* ---------- FAQ ---------- */
 .faq { padding: 36px 0 0; }
@@ -685,6 +698,140 @@ img { max-width: 100%; display: block; }
 .cta p { margin: 0; font-size: 15px; color: var(--ink-faint); }
 .cta .store-buttons { justify-content: center; padding-top: 8px; }
 .cta .store-badges { justify-content: center; padding-top: 8px; }
+
+/* ---------- 版本更新 slider（WHAT'S NEW） ---------- */
+.whatsnew { padding: 40px 0 8px; }
+.whatsnew .section-label { margin: 0 0 8px; }
+.wn-head {
+  margin: 0 0 16px;
+  font-family: var(--font-cjk);
+  font-weight: 900;
+  font-size: clamp(1.5rem, 3.4vw, 28px);
+  line-height: 1.12;
+  letter-spacing: -.6px;
+  color: var(--ink-second);
+}
+.wn-slider {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+}
+.wn-slider::-webkit-scrollbar { display: none; }
+.wn-card {
+  scroll-snap-align: start;
+  flex: 0 0 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 22px 24px 24px;
+  border-radius: 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+}
+.wn-card-top { display: flex; align-items: center; gap: 8px; }
+.wn-ver { font-family: var(--font-latin); font-weight: 700; font-size: 22px; letter-spacing: -.5px; color: var(--ink); }
+.wn-latest {
+  font-family: var(--font-cjk); font-weight: 700; font-size: 11px;
+  padding: 3px 10px; border-radius: 999px;
+  background: var(--brand-soft); color: var(--brand-ink);
+}
+.wn-date { margin-left: auto; font-family: var(--font-latin); font-weight: 500; font-size: 13px; color: var(--ink-faint); }
+.wn-divider { height: 1px; background: var(--border); }
+.wn-notes { display: flex; flex-direction: column; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.wn-notes li { position: relative; padding-left: 15px; font-size: 13px; line-height: 1.55; color: var(--ink-muted); }
+.wn-notes li::before { content: "·"; position: absolute; left: 3px; top: -.05em; font-weight: 700; color: var(--ink-faint); }
+.wn-tag { margin-right: 5px; font-family: var(--font-cjk); font-weight: 500; color: var(--ink-muted); }
+.wn-card.more {
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--bg-subtle);
+  border-color: transparent;
+  text-align: center;
+  color: inherit;
+}
+.wn-card.more:hover { background: var(--border); }
+.wn-more-arrow { font-family: var(--font-latin); font-weight: 700; font-size: 28px; color: var(--ink-muted); }
+.wn-more-text { font-family: var(--font-cjk); font-weight: 700; font-size: 15px; color: var(--ink-second); }
+.wn-foot { display: flex; align-items: center; gap: 8px; padding-top: 8px; }
+.wn-dots { display: flex; gap: 6px; }
+.wn-dots i { width: 7px; height: 7px; border-radius: 999px; background: var(--border); }
+.wn-dots i.active { width: 18px; background: var(--ink); }
+.wn-hint { margin-left: auto; font-family: var(--font-cjk); font-weight: 500; font-size: 12px; color: var(--ink-faint); }
+
+/* ---------- 方案比較表（PLANS） ---------- */
+.plans { padding: 32px 0 8px; }
+.plans .section-label { margin: 0 0 8px; }
+.plans-head {
+  margin: 0 0 12px;
+  font-family: var(--font-cjk);
+  font-weight: 900;
+  font-size: clamp(1.5rem, 3.4vw, 28px);
+  line-height: 1.12;
+  letter-spacing: -.6px;
+  color: var(--ink-second);
+}
+.plans-sub { margin: 0 0 16px; max-width: 760px; font-size: 15px; line-height: 1.6; color: var(--ink-muted); }
+.compare-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 16px; border: 1px solid var(--border); }
+.compare {
+  width: 100%;
+  min-width: 520px;
+  border-collapse: collapse;
+  background: var(--bg-card);
+  font-family: var(--font-cjk);
+}
+.compare th, .compare td {
+  padding: 15px 20px;
+  text-align: center;
+  font-size: 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+.compare tbody tr:last-child th,
+.compare tbody tr:last-child td { border-bottom: none; }
+.compare thead th { font-weight: 700; color: var(--ink); }
+.compare .c-feat { text-align: left; width: auto; color: var(--ink-muted); font-weight: 700; }
+.compare .c-free { width: 200px; font-size: 16px; }
+.compare .c-pro  { width: 220px; }
+.compare tbody th[scope="row"] {
+  text-align: left; font-weight: 500; font-size: 14px; color: var(--ink);
+}
+.compare thead .c-pro { color: var(--brand-ink); font-size: 16px; }
+.compare .pro { background: var(--brand-tint); }
+.c-badge {
+  display: inline-block; margin-left: 6px; vertical-align: middle;
+  font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px;
+  background: var(--brand); color: var(--brand-fg);
+}
+.compare .chk { color: var(--brand); font-weight: 700; }
+.compare .chk-free { color: var(--ink-faint); font-weight: 700; }
+.compare .diff-free { color: var(--ink-muted); }
+.compare .diff-pro { color: var(--brand-ink); font-weight: 700; }
+.compare .row-price th,
+.compare .row-price td { font-weight: 700; }
+.compare .row-price .diff-free,
+.compare .row-price td:not(.pro) { color: var(--ink); }
+.plans-note { margin: 18px 0 0; text-align: center; font-size: 14px; line-height: 1.6; color: var(--ink-muted); }
+
+/* 版本更新 / 方案表 —— 手機版 */
+@media (max-width: 680px) {
+  .whatsnew { padding: 28px 0 8px; }
+  .wn-card { flex-basis: 284px; padding: 18px 20px 20px; }
+  .wn-hint { display: none; }
+  .compare { min-width: 0; }
+  .compare th, .compare td { padding: 13px 10px; font-size: 13px; }
+  .compare th:first-child, .compare td:first-child { padding-left: 14px; }
+  .compare .c-free, .compare .c-pro { width: 78px; }
+  .compare .c-free { font-size: 14px; }
+  .compare thead .c-pro { font-size: 14px; }
+  .compare tbody th[scope="row"] { font-size: 13px; }
+  .c-badge { display: block; margin: 4px auto 0; width: max-content; }
+}
 
 /* ---------- 頁尾 ---------- */
 .site-footer {
