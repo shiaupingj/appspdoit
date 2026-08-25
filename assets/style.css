@@ -700,6 +700,111 @@ img { max-width: 100%; display: block; }
 .cta .store-badges { justify-content: center; padding-top: 8px; }
 
 /* ---------- 版本更新 slider（WHAT'S NEW） ---------- */
+/* ---------- 跑馬燈（TreWay 樹資料更新公告） ---------- */
+.tw-marquee-sec { padding: 24px 0 0; }
+.tw-marquee {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 16px;
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--brand) 15%, var(--bg-card));
+  border: 1px solid color-mix(in srgb, var(--brand) 30%, var(--border));
+  overflow: hidden;
+}
+.tw-marquee-tag {
+  flex: none;
+  font-family: var(--font-cjk);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: .3px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: var(--brand);
+  color: var(--brand-fg);
+}
+.tw-marquee-vp {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+}
+.tw-marquee.is-scrolling .tw-marquee-vp {
+  -webkit-mask: linear-gradient(90deg, transparent 0, #000 20px, #000 calc(100% - 20px), transparent 100%);
+  mask: linear-gradient(90deg, transparent 0, #000 20px, #000 calc(100% - 20px), transparent 100%);
+}
+.tw-marquee-track {
+  display: inline-flex;
+  white-space: nowrap;
+  will-change: transform;
+}
+.tw-marquee.is-scrolling .tw-marquee-track { animation: tw-marquee-scroll 32s linear infinite; }
+.tw-marquee.is-scrolling:hover .tw-marquee-track { animation-play-state: paused; }
+.tw-marquee-item {
+  font-family: var(--font-cjk);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-second);
+  padding-right: 56px;
+}
+/* 內容不溢出（桌機）時：只顯示一份、去掉尾端留白，不捲動 */
+.tw-marquee:not(.is-scrolling) .tw-marquee-item { padding-right: 0; }
+.tw-marquee:not(.is-scrolling) .tw-marquee-item + .tw-marquee-item { display: none; }
+.tw-marquee-item b { font-weight: 700; color: var(--brand-ink); }
+@keyframes tw-marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  /* 不自動捲動：改為靜態換行顯示完整訊息 */
+  .tw-marquee.is-scrolling .tw-marquee-track { animation: none; white-space: normal; }
+  .tw-marquee.is-scrolling .tw-marquee-vp { -webkit-mask: none; mask: none; }
+  .tw-marquee-item { padding-right: 0; }
+  .tw-marquee-item + .tw-marquee-item { display: none; }
+}
+
+/* ---------- 樹木統計（TreWay 各縣市收錄，含 count-up） ---------- */
+.treecount { padding: 40px 0 8px; }
+.treecount .section-label { margin: 0 0 8px; }
+.tc-grid { display: flex; gap: 16px; flex-wrap: wrap; align-items: stretch; }
+.tc-tile {
+  flex: 1 1 175px;
+  min-width: 158px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.tc-total {
+  flex: 1 1 250px;
+  min-width: 230px;
+  /* 直接對主題 --brand 做 color-mix；不用 --brand-soft（它在 :root 已被綠色定死） */
+  background: color-mix(in srgb, var(--brand) 15%, var(--bg-card));
+}
+.tc-tile-head { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+.tc-tile-head svg { flex: none; }
+.tc-total .tc-tile-head { color: var(--brand-ink); font-weight: 700; }
+.tc-city { color: var(--ink-muted); font-weight: 500; }
+.tc-num-row { display: flex; align-items: baseline; gap: 5px; }
+.tc-num {
+  font-family: var(--font-latin);
+  font-weight: 900;
+  line-height: 1;
+  font-size: 44px;
+  font-variant-numeric: tabular-nums;
+  color: var(--brand-ink);
+}
+.tc-total .tc-num { color: var(--ink); font-size: 54px; }
+.tc-unit { font-size: 15px; color: var(--ink-muted); }
+.tc-total .tc-unit { font-size: 17px; }
+/* 標題列內的「60 樹種」小數字（同樣有 count-up） */
+.tc-total .tc-tile-head .tc-head-num { font-size: 13px; line-height: 1; color: inherit; }
+.tc-cap { margin: 0; font-size: 12px; color: var(--ink-muted); }
+.tc-bar { height: 4px; border-radius: 999px; background: color-mix(in srgb, var(--brand) 16%, var(--bg-card)); overflow: hidden; }
+.tc-bar i { display: block; height: 100%; width: 0; background: var(--brand); border-radius: 999px; }
+
 .whatsnew { padding: 40px 0 8px; }
 .whatsnew .section-label { margin: 0 0 8px; }
 .wn-head {
@@ -738,7 +843,9 @@ img { max-width: 100%; display: block; }
 .wn-latest {
   font-family: var(--font-cjk); font-weight: 700; font-size: 11px;
   padding: 3px 10px; border-radius: 999px;
-  background: var(--brand-soft); color: var(--brand-ink);
+  /* 直接對主題 --brand 做 color-mix（--brand-soft 在 :root 被綠色定死） */
+  background: color-mix(in srgb, var(--brand) 16%, var(--bg-card));
+  color: var(--brand-ink);
 }
 .wn-date { margin-left: auto; font-family: var(--font-latin); font-weight: 500; font-size: 13px; color: var(--ink-faint); }
 .wn-divider { height: 1px; background: var(--border); }
@@ -802,7 +909,7 @@ img { max-width: 100%; display: block; }
   text-align: left; font-weight: 500; font-size: 14px; color: var(--ink);
 }
 .compare thead .c-pro { color: var(--brand-ink); font-size: 16px; }
-.compare .pro { background: var(--brand-tint); }
+.compare .pro { background: color-mix(in srgb, var(--brand) 8%, var(--bg-card)); }
 .c-badge {
   display: inline-block; margin-left: 6px; vertical-align: middle;
   font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px;
@@ -953,6 +1060,21 @@ img { max-width: 100%; display: block; }
   }
   .app-hero-media img { max-width: none; margin: 0; }
   .legal-card { padding: 24px 20px; }
+  /* 跑馬燈：手機版縮小字級與內距，比照 Figma Mobile · TreWay */
+  .tw-marquee-sec { padding: 20px 0 0; }
+  .tw-marquee { gap: 10px; padding: 9px 12px; border-radius: 12px; }
+  .tw-marquee-tag { font-size: 11px; padding: 4px 9px; }
+  .tw-marquee-item { font-size: 13px; padding-right: 44px; }
+  .tw-marquee.is-scrolling .tw-marquee-vp {
+    -webkit-mask: linear-gradient(90deg, transparent 0, #000 12px, #000 calc(100% - 12px), transparent 100%);
+    mask: linear-gradient(90deg, transparent 0, #000 12px, #000 calc(100% - 12px), transparent 100%);
+  }
+  /* 樹木統計：手機版總數滿寬、兩縣市各半 */
+  .tc-tile { flex-basis: calc(50% - 8px); min-width: 0; padding: 18px 18px; }
+  .tc-total { flex-basis: 100%; }
+  .tc-num { font-size: 38px; }
+  .tc-total .tc-num { font-size: 46px; }
+  .tc-total .tc-tile-head .tc-head-num { font-size: 13px; }
 }
 
 /* 手機版頁首：字標與導覽分行，導覽膠囊可橫向捲動不溢出 */
