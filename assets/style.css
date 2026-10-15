@@ -68,6 +68,7 @@
 .theme-ira    { --accent: #01011f; --brand: #749E44; --brand-ink: #749E44; }
 .theme-planto { --accent: #123020; --brand: #3f7a34; --brand-ink: #2f6a26; }
 .theme-treway { --accent: #2c1c06; --brand: #7a5a3c; --brand-ink: #5f4326; }
+.theme-packplan { --accent: #351500; --brand: #FF6B00; --brand-ink: #D65300; }
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -108,6 +109,7 @@
   .theme-ira    { --accent: #cfe0ff; --brand: #9dc46e; --brand-ink: #b7d98f; }
   .theme-planto { --accent: #bfe7cd; --brand: #7fc96a; --brand-ink: #bfe7cd; }
   .theme-treway { --accent: #e8d3b3; --brand: #c9a878; --brand-ink: #e8d3b3; }
+  .theme-packplan { --accent: #FFD4B0; --brand: #FF8A1F; --brand-ink: #FF9C3A; }
 }
 
 /* ---------- 基礎 ---------- */
@@ -343,8 +345,12 @@ img { max-width: 100%; display: block; }
 .apps-section { padding: 8px 0 64px; }
 .cards {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
+}
+/* 4 張卡在 1200px 以下會擠到約 230px 寬，先改 2 欄（≤1024 的規則同樣是 2 欄） */
+@media (max-width: 1199px) {
+  .cards { grid-template-columns: repeat(2, 1fr); }
 }
 .app-card {
   display: flex;
