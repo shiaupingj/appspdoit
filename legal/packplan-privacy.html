@@ -23,6 +23,8 @@
     @media (prefers-color-scheme: dark) {
       .theme-packplan { --accent: #FFD4B0; --brand: #FF8A1F; --brand-ink: #FF9C3A; }
     }
+    /* 條文內連結（第三方隱私權政策等）需看得出可點擊 */
+    .legal-card a { color: var(--brand-ink); text-decoration: underline; text-underline-offset: 2px; }
   </style>
   <link rel="icon" href="../assets/icon_appsodoit.png">
 </head>
@@ -46,60 +48,83 @@
       <span class="legal-app-name">PackPlan 打包計劃</span>
     </div>
     <h1>隱私權政策</h1>
-    <p class="meta">最後更新日期：2026 年 8 月</p>
+    <p class="meta">最後更新日期：2026 年 10 月 15 日</p>
 
     <div class="legal-card">
     <p>說明 PackPlan（打包計劃）戶外打包工具如何處理使用者資料、備份功能，以及與第三方服務的互動。</p>
 
     <h2>1. 本 App 收集哪些資料</h2>
-    <p>本 App <span class="hl">不會收集、儲存、傳輸任何足以識別個人身分的資料</span>至開發者或第三方伺服器，包括但不限於：</p>
+    <p>本 App <span class="hl">不會收集、儲存、傳輸任何足以識別個人身分的資料</span>至開發者伺服器，包括但不限於：</p>
     <ul>
       <li>姓名、信箱、電話</li>
       <li>裝置識別碼</li>
       <li>位置、麥克風、通訊錄、聯絡人</li>
       <li>使用行為分析、廣告追蹤</li>
     </ul>
-    <p>您在 App 中建立的打包清單、項目、分類、範本與設定，<span class="hl">僅儲存於您裝置的本機資料庫（SQLite）</span>，不會上傳至開發者伺服器，亦無帳號系統或雲端同步。</p>
+    <p>您在 App 中建立的打包清單、項目、分類、範本與設定，<span class="hl">儲存於您裝置的本機資料庫（SQLite）</span>，不會上傳至開發者伺服器，亦無帳號系統。若您使用雲端備份，備份檔只會存到<span class="hl">您本人的 iCloud Drive 或 Google Drive</span>（詳見第 2 條）；下載參考重量資料時，Google Firebase 會留下一般的伺服器紀錄（詳見第 5 條）。</p>
 
     <h2>2. 資料備份</h2>
-    <p>PackPlan 的備份完全由您主動操作，僅提供本機檔案匯出／匯入：</p>
+    <p>PackPlan 提供以下備份方式，皆由您主動操作：</p>
     <ul>
+      <li><span class="hl">iCloud 雲端備份（iOS）</span>：手動將清單、項目、分類、範本與設定備份到<span class="hl">您本人 iCloud Drive 中的「PackPlan」資料夾</span>。可保留多個備份版本，並可在 App 內選擇版本還原或刪除。備份存於您本人的 iCloud 空間，開發者無法讀取、不會收集，也不會提供給任何第三方。</li>
+      <li><span class="hl">Google Drive 雲端備份（Android）</span>：手動將清單、項目、分類、範本與設定備份到<span class="hl">您本人 Google Drive 中的「PackPlan」資料夾</span>。可保留多個備份版本，並可在 App 內選擇版本還原或刪除。使用此功能需以您的 Google 帳號登入授權，App 只申請 <code>drive.file</code> 權限，<span class="hl">只能存取 PackPlan 自己建立的檔案，無法讀取您 Google Drive 中的其他檔案</span>；帳號資訊僅在您的裝置上用於授權，不會傳送給開發者。開發者無法讀取您的備份內容。</li>
       <li><span class="hl">本機備份匯出</span>：您可將所有清單與設定匯出為 JSON 備份檔（上限 10 MB），儲存於您自選的位置。匯出檔由您自行保管，建議妥善存放，避免外流。</li>
       <li><span class="hl">備份匯入</span>：您可選取先前匯出的備份檔還原資料，匯入前會顯示覆蓋確認。</li>
     </ul>
     <div class="callout">
-      <p>PackPlan 不會將您的任何資料上傳至開發者或第三方的伺服器，也不提供雲端同步。</p>
-      <p>備份功能可至 <span class="path">我的 → 資料備份</span> 管理。</p>
+      <p>PackPlan 不會將您的資料上傳至開發者的伺服器。雲端備份不會自動同步，只在您手動備份時上傳到您本人的雲端空間。</p>
+      <p>備份功能可至 <span class="path">設定 → 資料管理</span> 管理。</p>
     </div>
 
     <h2>3. 權限使用</h2>
-    <p>本 App 僅在您使用對應功能時，才會透過系統元件請求存取：</p>
+    <p>本 App 僅在您使用對應功能時，才會使用以下權限或系統元件：</p>
     <ul>
+      <li><span class="hl">網路連線</span>：下載參考重量資料，以及執行雲端備份與還原時使用</li>
+      <li><span class="hl">iCloud（iOS）</span>：雲端備份與還原時，存取您 iCloud Drive 中的「PackPlan」資料夾</li>
+      <li><span class="hl">Google 帳號授權（Android）</span>：使用 Google Drive 備份時，透過 Google 登入取得授權，僅申請 <code>drive.file</code> 權限</li>
       <li><span class="hl">檔案存取</span>：匯出或匯入備份檔時，開啟系統檔案選擇器，僅存取您主動選取的檔案</li>
       <li><span class="hl">系統分享</span>：分享清單摘要時，開啟 iOS／Android 內建分享面板，由您決定分享目標</li>
+      <li><span class="hl">開啟郵件 App</span>：聯絡開發者時，開啟裝置上的郵件 App 撰寫信件，信件內容與是否寄出皆由您決定</li>
     </ul>
     <p>不要求相機、相簿、位置、麥克風、通訊錄或通知等敏感權限。</p>
 
     <h2>4. 內購與付款</h2>
-    <p>目前版本為<span class="hl">完整離線工具，不含任何付費內購</span>；範本中的 Pro 標記僅為未來功能預告，不會向您收取任何費用。若日後推出 Pro 方案，所有交易將透過 <span class="hl">Apple App Store 或 Google Play</span> 處理，開發者不會取得您的信用卡或其他付款資訊。</p>
+    <p>目前版本<span class="hl">不含任何付費內購</span>。日後將推出付費項目，屆時所有交易將透過 <span class="hl">Apple App Store 或 Google Play</span> 處理，開發者不會取得您的信用卡或其他付款資訊；推出時將同步更新本政策。</p>
 
     <h2>5. 第三方服務</h2>
-    <p>本 App <span class="hl">未整合任何分析、廣告、追蹤、辨識或雲端服務</span>。</p>
+    <p>本 App <span class="hl">未整合任何分析、廣告或追蹤服務</span>。以下服務僅在您使用對應功能時連線：</p>
     <ul>
+      <li><span class="hl">Apple iCloud</span>：用於 iOS 雲端備份。備份檔存於您本人的 iCloud Drive，由 Apple 依其隱私權政策處理。（<a href="https://www.apple.com/tw/legal/privacy/" target="_blank" rel="noopener">Apple 隱私權政策</a>）</li>
+      <li><span class="hl">Google 登入與 Google Drive API</span>：用於 Android 雲端備份。只申請 <code>drive.file</code> 權限，也就是<span class="hl">只能存取 App 自己建立的檔案</span>。（<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google 隱私權政策</a>）</li>
+      <li><span class="hl">Google Firebase（Cloud Firestore）</span>：只用來<span class="hl">下載公開的參考重量資料，不會上傳您的任何資料</span>。連線時，Google 會留下一般的伺服器紀錄（例如 IP 位址）。（<a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Firebase 隱私權與安全性</a>）</li>
       <li><span class="hl">字型資源</span>：介面字型已<span class="hl">內建打包於 App 內</span>，不需連網下載，不會因字型而傳送任何資料。</li>
       <li><span class="hl">系統分享</span>：分享功能由 iOS／Android 原生分享元件處理，分享的文字內容與目標皆由您決定，開發者不經手。</li>
     </ul>
 
-    <h2>6. 資料安全</h2>
-    <p>本 App 不在開發者端儲存任何使用者資料，亦無使用者帳號系統。本機資料庫內容隨 App 解除安裝即一併移除；您匯出的備份檔則保留於您自選的位置，可自行刪除。</p>
+    <h2>6. Google API 服務使用聲明</h2>
+    <p>PackPlan 使用與傳輸自 Google API 取得的資訊，將遵守 <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener">Google API Services User Data Policy</a>，包含其中的 Limited Use（有限使用）要求：</p>
+    <ul>
+      <li>Google Drive 資料<span class="hl">只用來備份和還原</span>您的 PackPlan 資料</li>
+      <li><span class="hl">不會轉給他人</span>，也不會用於廣告或任何其他用途</li>
+    </ul>
+    <div class="callout">
+      <p lang="en">PackPlan's use and transfer of information received from Google APIs will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener">Google API Services User Data Policy</a>, including the Limited Use requirements.</p>
+    </div>
 
-    <h2>7. 兒童隱私</h2>
+    <h2>7. 資料安全</h2>
+    <p>本 App 不在開發者端儲存任何使用者資料，亦無使用者帳號系統。本機資料庫內容隨 App 解除安裝即一併移除；您匯出的備份檔則保留於您自選的位置，可自行刪除。</p>
+    <ul>
+      <li><span class="hl">雲端備份不會因刪除 App 而消失</span>：您可在 App 內刪除各個備份版本，或直接到 iCloud Drive／Google Drive 的「PackPlan」資料夾自行刪除。</li>
+      <li><span class="hl">Google 授權可隨時撤銷</span>：您可在 App 內中斷 Google 帳號連結，或至 Google 帳戶的「<a href="https://myaccount.google.com/connections" target="_blank" rel="noopener">第三方存取權</a>」頁面撤銷 PackPlan 的存取權。</li>
+    </ul>
+
+    <h2>8. 兒童隱私</h2>
     <p>本 App 不針對 13 歲以下兒童設計，亦不刻意收集兒童相關資訊。</p>
 
-    <h2>8. 政策變更</h2>
+    <h2>9. 政策變更</h2>
     <p>本政策若有更新，將於本頁公布並更新「最後更新日期」。</p>
 
-    <h2>9. 聯絡方式</h2>
+    <h2>10. 聯絡方式</h2>
     <p>如對本政策有疑問，可透過以下方式聯繫開發者：<a href="mailto:appspdoit@gmail.com">appspdoit@gmail.com</a></p>
     </div>
   </main>
