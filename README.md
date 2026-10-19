@@ -23,7 +23,8 @@ appspdoit/
 │   ├── planto-privacy.html    # Planto 隱私權政策
 │   ├── planto-terms.html      # Planto 使用條款
 │   ├── treway-privacy.html    # TreWay 隱私權政策
-│   └── treway-terms.html      # TreWay 使用條款
+│   ├── treway-terms.html      # TreWay 使用條款
+│   └── fofo-privacy.html      # 美食過街 隱私權政策
 ├── .nojekyll                  # 讓 GitHub Pages 原樣輸出，不經 Jekyll 處理
 └── README.md
 ```
@@ -54,6 +55,7 @@ appspdoit/
 - IRA：`https://shiaupingj.github.io/appspdoit/legal/ira-privacy.html`
 - Planto：`https://shiaupingj.github.io/appspdoit/legal/planto-privacy.html`
 - TreWay：`https://shiaupingj.github.io/appspdoit/legal/treway-privacy.html`
+- 美食過街：`https://shiaupingj.github.io/appspdoit/legal/fofo-privacy.html`
 
 ## 之後可做的事
 
