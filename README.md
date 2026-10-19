@@ -1,19 +1,22 @@
 # appspdoit 開發者網站
 
-appspdoit 的開發者官網，整合三款 App 的產品介紹、隱私權政策與使用條款。
+appspdoit 的開發者官網，整合各款 App 與網頁遊戲的產品介紹、隱私權政策與使用條款。
 純 HTML / CSS 靜態網站，可直接部署至 GitHub Pages。
 
 ## 網站結構
 
 ```
 appspdoit/
-├── index.html                 # 首頁（三款 App 總覽）
+├── index.html                 # 首頁（產品總覽）
 ├── assets/
 │   └── style.css              # 共用樣式表（亮/暗色、響應式）
 ├── apps/
 │   ├── ira.html               # IRA 資產再平衡 產品頁
 │   ├── planto.html            # Planto 產品頁
-│   └── treway.html            # TreWay 找樹趣 產品頁
+│   ├── treway.html            # TreWay 找樹趣 產品頁
+│   └── packplan.html          # PackPlan 打包計劃 產品頁
+├── game/
+│   └── fofo.html              # 美食過街（網頁遊戲）介紹頁
 ├── legal/
 │   ├── ira-privacy.html       # IRA 隱私權政策
 │   ├── ira-terms.html         # IRA 使用條款
