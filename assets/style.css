@@ -639,6 +639,8 @@ img { max-width: 100%; display: block; }
 
 /* ---------- FAQ ---------- */
 .faq { padding: 36px 0 0; }
+/* FAQ 為頁面最後一段（無 CTA）時：與頁尾的距離 = 標籤到第一題的 20px（12 + 頁尾 margin-top 8） */
+.faq:last-child { padding-bottom: 12px; }
 .faq-list { display: flex; flex-direction: column; gap: 10px; }
 .faq-item {
   background: var(--bg-card);
