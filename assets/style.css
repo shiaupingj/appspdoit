@@ -257,14 +257,24 @@ img { max-width: 100%; display: block; }
 }
 .menu-close:hover { background: rgba(255, 255, 255, .1); }
 .mobile-menu a {
-  padding: 16px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
   font-family: var(--font-cjk);
   font-weight: 500;
   font-size: 16px;
   color: var(--ink-inverse);
   border-top: 1px solid rgba(255, 255, 255, .12);
 }
-.mobile-menu a.active { font-weight: 700; }
+.mobile-menu a.active { font-weight: 700; background: rgba(255, 255, 255, .08); }
+.menu-icon {
+  width: 32px;
+  height: 32px;
+  flex: 0 0 auto;
+  border-radius: 8px;            /* App icon 圓角 */
+  object-fit: cover;
+}
 .mobile-menu a:hover { background: rgba(255, 255, 255, .06); }
 .nav-toggle:checked ~ .nav-overlay { opacity: 1; visibility: visible; }
 .nav-toggle:checked ~ .mobile-menu { transform: translateX(0); }
@@ -1102,8 +1112,10 @@ img { max-width: 100%; display: block; }
   }
   .nav-pill::-webkit-scrollbar { display: none; }
   .nav-pill a { padding: 8px 14px; }
+}
 
-  /* 有漢堡選單的頁面（如 IRA）：改用右上漢堡鈕，隱藏膠囊導覽 */
+/* 有漢堡選單的頁面（各 App 頁）：5 個 App 的膠囊在窄螢幕放不下，改用右上漢堡鈕＋右側抽屜 */
+@media (max-width: 680px) {
   .has-menu .nav-pill { display: none; }
   .has-menu .burger { display: inline-flex; }
   .nav-overlay { display: block; }
